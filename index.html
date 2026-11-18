@@ -1,0 +1,943 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Daily Five — 5 tiny tests. 1 score. Every day.</title>
+<meta name="description" content="Five 20-second brain tests: time sense, color memory, reflexes, visual memory and estimation. Same puzzle for everyone, every day. Keep your streak alive.">
+<meta property="og:title" content="Daily Five — how sharp are you today?">
+<meta property="og:description" content="5 tiny tests. 1 score out of 500. A new set every day.">
+<meta property="og:type" content="website">
+<!-- Social previews need the full site address. Update these if the site moves to a custom domain. -->
+<meta property="og:url" content="https://prinnybb.github.io/daily-five/">
+<meta property="og:image" content="https://prinnybb.github.io/daily-five/og-image.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="theme-color" content="#f3eee4" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#171613" media="(prefers-color-scheme: dark)">
+<link rel="manifest" href="manifest.webmanifest">
+<link rel="icon" href="icon.svg" type="image/svg+xml">
+<link rel="icon" href="icon-32.png" type="image/png" sizes="32x32">
+<link rel="apple-touch-icon" href="apple-touch-icon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,600;0,9..144,800;1,9..144,600&family=IBM+Plex+Mono:wght@500;700&family=Archivo:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --paper:#f3eee4; --paper2:#e9e2d4; --ink:#1c1b18; --muted:#6e685d; --rule:#1c1b18; --soft:#cfc6b4;
+  --accent:#d9442a; --good:#2e7a4c; --ok:#b8900f; --meh:#d27426; --bad:#c2352a;
+  --serif:"Fraunces",Georgia,"Times New Roman",serif;
+  --sans:"Archivo",system-ui,-apple-system,"Segoe UI",sans-serif;
+  --mono:"IBM Plex Mono",ui-monospace,Consolas,monospace;
+  color-scheme:light;
+}
+@media (prefers-color-scheme:dark){
+  :root{--paper:#171613;--paper2:#22201b;--ink:#ece5d6;--muted:#9a9384;--rule:#ece5d6;--soft:#3a372f;
+    --accent:#ef5a3c;--good:#4fa671;--ok:#d6ad2c;--meh:#e58a3c;--bad:#e0503f;color-scheme:dark}
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html,body{min-height:100%}
+body{background:var(--paper);color:var(--ink);font-family:var(--sans);font-size:16px;
+  -webkit-tap-highlight-color:transparent;display:flex;flex-direction:column;align-items:center}
+.wrap,header,main,footer{width:100%;max-width:520px;padding-left:16px;padding-right:16px}
+
+/* masthead */
+header{padding-top:18px}
+.mast{display:flex;align-items:baseline;gap:12px}
+.logo{font-family:var(--serif);font-weight:800;font-size:30px;letter-spacing:-.8px;cursor:pointer;user-select:none;line-height:1}
+.logo em{font-style:italic;font-weight:600;color:var(--accent)}
+.spacer{flex:1}
+.navlink{background:none;border:0;font:inherit;font-family:var(--mono);font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:.8px;color:var(--ink);cursor:pointer;padding:6px 0;border-bottom:1.5px solid transparent}
+.navlink:hover{border-bottom-color:var(--ink)}
+.dateline{display:flex;justify-content:space-between;font-family:var(--mono);font-size:11px;text-transform:uppercase;letter-spacing:.8px;color:var(--muted);
+  border-top:3px double var(--rule);border-bottom:1px solid var(--rule);padding:6px 0;margin-top:10px}
+.dateline b{color:var(--ink)}
+
+main{flex:1}
+.card{border:1.5px solid var(--rule);background:var(--paper);padding:22px 18px;margin:14px 0;animation:in .25s ease-out}
+@keyframes in{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:none}}
+h1{font-family:var(--serif);font-size:38px;line-height:1.02;letter-spacing:-1.2px;font-weight:800}
+h2{font-family:var(--serif);font-size:30px;font-weight:800;letter-spacing:-.8px;line-height:1.05}
+p{color:var(--muted);line-height:1.5}
+p b,.strong{color:var(--ink)}
+.center{text-align:center}
+.kicker{font-family:var(--mono);font-size:11px;font-weight:700;letter-spacing:1.2px;text-transform:uppercase;color:var(--accent);margin-bottom:8px}
+.numeral{font-family:var(--serif);font-style:italic;font-weight:600;font-size:64px;line-height:1;color:var(--accent);margin:4px 0 6px}
+
+.btn{appearance:none;font:inherit;font-weight:700;font-size:16px;cursor:pointer;color:var(--ink);background:transparent;
+  border:1.5px solid var(--ink);border-radius:4px;padding:14px 18px;transition:background .12s,color .12s,transform .06s}
+.btn:hover{background:var(--paper2)}
+.btn:active{transform:translateY(1px)}
+.btn.primary{background:var(--ink);color:var(--paper)}
+.btn.primary:hover{background:var(--accent);border-color:var(--accent)}
+.btn.block{width:100%;display:block}
+.btn.huge{font-size:18px;padding:18px}
+.btn:disabled{opacity:.45;cursor:default}
+.mt{margin-top:14px}.mt2{margin-top:22px}
+
+.toc{margin:18px 0;border-top:1px solid var(--rule)}
+.toc div{display:flex;align-items:baseline;gap:12px;padding:9px 2px;border-bottom:1px solid var(--soft);text-align:left}
+.toc span{font-family:var(--mono);font-size:12px;color:var(--accent);font-weight:700}
+.toc b{font-family:var(--serif);font-weight:600;font-size:18px}
+.toc i{margin-left:auto;font-style:normal;font-size:13px;color:var(--muted)}
+
+.progress{display:flex;gap:4px;margin-top:14px}
+.progress span{flex:1;height:4px;background:var(--soft)}
+.progress span.done{background:var(--ink)}
+.progress span.cur{background:var(--accent)}
+
+.timer{font-family:var(--mono);font-size:68px;font-weight:700;font-variant-numeric:tabular-nums;margin:18px 0;transition:filter .3s,opacity .3s;letter-spacing:-2px}
+.timer.blur{filter:blur(9px);opacity:.5}
+.score-big{font-family:var(--serif);font-size:96px;font-weight:800;line-height:.95;letter-spacing:-3px;font-variant-numeric:tabular-nums}
+.verdict{font-family:var(--serif);font-style:italic;font-size:22px;font-weight:600;margin-top:6px}
+.detail{margin-top:14px;color:var(--muted);line-height:1.5}
+.detail b{color:var(--ink)}
+.mathq{font-family:var(--serif);font-size:58px;font-weight:800;letter-spacing:-1.5px;margin:18px 0 6px;font-variant-numeric:tabular-nums}
+.ok-flash{animation:okf .3s}
+@keyframes okf{from{color:var(--good)}}
+.opts{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:16px}
+.opts .btn{font-family:var(--mono);font-size:26px;padding:18px 10px;touch-action:manipulation}
+#mlog{font-family:var(--mono);font-size:13px}
+
+.reflex{height:300px;display:grid;place-items:center;text-align:center;font-family:var(--serif);font-size:34px;font-weight:800;
+  cursor:pointer;user-select:none;touch-action:manipulation;padding:20px;border:1.5px solid var(--rule);letter-spacing:-.5px}
+.reflex small{display:block;font-family:var(--mono);font-size:12px;font-weight:700;letter-spacing:1px;text-transform:uppercase;opacity:.8;margin-top:10px}
+.r-idle{background:var(--paper2);color:var(--ink)}
+.r-wait{background:var(--accent);color:#fff}
+.r-go{background:var(--good);color:#fff}
+.r-early{background:var(--ink);color:var(--paper)}
+#rlog{font-family:var(--mono);font-size:13px}
+
+.grid{display:grid;grid-template-columns:repeat(5,1fr);gap:6px;margin:14px auto;max-width:330px}
+.grid button{aspect-ratio:1;border:1.5px solid var(--rule);border-radius:2px;background:var(--paper);cursor:pointer;transition:background .12s}
+.grid button.lit{background:var(--ink)}
+.grid button.pick{background:var(--accent);border-color:var(--accent)}
+.grid button.hit{background:var(--good);border-color:var(--good)}
+.grid button.miss{background:repeating-linear-gradient(45deg,transparent 0 5px,var(--soft) 5px 7px)}
+.grid button.wrong{background:var(--bad);border-color:var(--bad)}
+.bar{height:3px;background:var(--soft);overflow:hidden;margin-top:10px}
+.bar i{display:block;height:100%;background:var(--accent);width:100%}
+canvas.dots{width:100%;max-width:330px;aspect-ratio:1;background:var(--paper2);border:1.5px solid var(--rule);display:block;margin:14px auto}
+input.num{width:100%;font-family:var(--mono);font-size:34px;font-weight:700;text-align:center;padding:12px;border:1.5px solid var(--rule);border-radius:4px;background:var(--paper);color:var(--ink);margin:12px 0}
+input.num:focus{outline:3px solid var(--accent);outline-offset:-1px}
+
+.squares{display:flex;gap:6px;justify-content:center;margin:14px 0}
+.squares i{width:26px;height:26px;display:block}
+.breakdown{margin-top:14px;border-top:1px solid var(--rule)}
+.breakdown div{display:flex;align-items:center;gap:10px;padding:10px 2px;border-bottom:1px solid var(--soft);text-align:left}
+.breakdown span.n{font-family:var(--mono);font-size:12px;color:var(--accent);font-weight:700}
+.breakdown span.t{font-weight:500}
+.breakdown b{font-family:var(--mono);font-variant-numeric:tabular-nums;width:34px;text-align:right}
+.breakdown .mini{height:6px;flex:1;max-width:110px;background:var(--soft);margin-left:auto}
+.breakdown .mini i{display:block;height:100%}
+.countdown{font-family:var(--mono);font-weight:700;color:var(--ink)}
+
+/* progress & rewards */
+.note{margin-top:12px;padding:10px 12px;background:var(--paper2);font-size:14px;color:var(--muted);line-height:1.45}
+.note b{color:var(--ink)}
+.pb-stamp{display:inline-block;font-family:var(--mono);font-size:11px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;
+  color:var(--accent);border:2px solid var(--accent);padding:4px 10px;transform:rotate(-3deg);margin:2px 0 10px;animation:stamp .4s cubic-bezier(.3,1.6,.5,1)}
+@keyframes stamp{from{transform:rotate(-3deg) scale(2);opacity:0}}
+.panel{margin-top:18px;padding:14px;border:1px solid var(--rule);text-align:left}
+.panel p{font-size:14px}
+.deltas{margin-top:10px;border-top:1px solid var(--soft)}
+.deltas div{display:flex;justify-content:space-between;padding:8px 0;border-bottom:1px solid var(--soft);font-size:14px;color:var(--muted)}
+.up{color:var(--good)} .down{color:var(--muted)}
+.deltas b,.trend b,.trend .c b{font-family:var(--mono);font-size:13px}
+.spark{width:100%;height:64px;display:block;margin-top:12px}
+.xpline{display:flex;align-items:baseline;gap:10px;font-family:var(--mono)}
+.xpline b{font-size:22px;color:var(--accent)}
+.xpline span{font-size:12px;color:var(--muted)}
+.levelup{font-family:var(--serif);font-size:20px;font-weight:800;margin-top:8px}
+.levelup i{color:var(--accent);font-weight:600}
+.lvl{display:flex;justify-content:space-between;font-size:13px;color:var(--muted);margin-top:10px}
+.lvl b{color:var(--ink)}
+.lvl span:last-child{font-family:var(--mono);font-size:12px}
+.lvlbar{height:6px;background:var(--soft);margin-top:6px}
+.lvlbar i{display:block;height:100%;background:var(--accent);transition:width .8s}
+.minirow{display:flex;justify-content:space-between;font-size:13px;color:var(--muted);margin-top:12px}
+.minirow b{color:var(--ink);font-family:var(--mono)}
+.goal{margin:4px 0 12px;font-size:15px;text-align:center;padding:10px;border:1px dashed var(--soft)}
+.badges{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:10px}
+.badge{display:flex;gap:10px;align-items:flex-start;padding:10px;border:1px solid var(--rule);text-align:left}
+.badge+.badge{margin-top:0}
+.rewards .badge{margin-top:8px}
+.badge b{display:block;font-size:13px;color:var(--ink)}
+.badge small{display:block;font-size:11px;color:var(--muted);line-height:1.35;margin-top:2px}
+.badge.locked{border-style:dashed;border-color:var(--soft);opacity:.65}
+.badge.new{border-color:var(--accent);animation:in .4s ease-out}
+.medal{flex:none;font-style:normal;width:26px;height:26px;border-radius:50%;display:grid;place-items:center;background:var(--accent);color:#fff;font-size:13px}
+.badge.locked .medal{background:var(--soft);color:var(--muted)}
+.trend{margin-top:8px;border-top:1px solid var(--rule)}
+.trend div{display:flex;align-items:center;gap:10px;padding:8px 0;border-bottom:1px solid var(--soft);font-size:14px}
+.trend .n{font-family:var(--mono);font-size:12px;color:var(--accent);font-weight:700}
+.trend .c{margin-left:auto}
+.trend .c small{font-size:11px;color:var(--muted)}
+.trend>div>b{width:30px;text-align:right}
+.xpline{flex-wrap:wrap}.xpline b{white-space:nowrap}
+@media (max-width:360px){.badges{grid-template-columns:1fr}.stats b{font-size:24px}}
+.btn:focus-visible,.reflex:focus-visible,.navlink:focus-visible,.grid button:focus-visible{outline:3px solid var(--accent);outline-offset:2px}
+footer a{color:var(--muted)}
+
+.ad{margin:14px 0;min-height:90px;overflow:hidden;text-align:center}
+.ad-ph{border:1px dashed var(--soft);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:4px;color:var(--muted);
+  font-family:var(--mono);font-size:10px;letter-spacing:1.2px;text-transform:uppercase}
+.ad-ph small{font-size:10px;text-transform:none;letter-spacing:0;opacity:.75}
+.adlabel{font-family:var(--mono);font-size:10px;color:var(--muted);text-transform:uppercase;letter-spacing:1.2px;margin-bottom:4px}
+
+dialog{margin:auto;border:1.5px solid var(--rule);background:var(--paper);color:var(--ink);border-radius:0;padding:24px 20px;width:min(460px,calc(100% - 32px));max-height:85vh}
+dialog::backdrop{background:#1c1b1899}
+.stats{display:grid;grid-template-columns:repeat(4,1fr);margin:16px 0;text-align:center;border-top:1px solid var(--rule);border-bottom:1px solid var(--rule)}
+.stats div{padding:12px 2px}
+.stats div+div{border-left:1px solid var(--soft)}
+.stats b{display:block;font-family:var(--serif);font-size:30px;font-weight:800}
+.stats small{font-family:var(--mono);font-size:10px;color:var(--muted);text-transform:uppercase;letter-spacing:.8px}
+.hist{display:flex;align-items:flex-end;gap:4px;height:110px;margin-top:10px;border-bottom:1px solid var(--rule)}
+.hist div{flex:1;background:var(--ink);min-height:2px}
+.hist div.today{background:var(--accent)}
+.rules{list-style:none;margin-top:14px;border-top:1px solid var(--rule)}
+.rules li{padding:10px 0;border-bottom:1px solid var(--soft);color:var(--muted);line-height:1.4;display:flex;gap:12px}
+.rules li span{font-family:var(--mono);font-size:12px;color:var(--accent);font-weight:700;padding-top:2px}
+.rules b{color:var(--ink)}
+footer{padding-top:10px;padding-bottom:30px;text-align:center;font-size:12px;color:var(--muted);border-top:1px solid var(--soft);margin-top:10px}
+.toast{width:max-content;max-width:calc(100% - 32px);text-align:center;line-height:1.35;position:fixed;left:50%;bottom:30px;transform:translateX(-50%) translateY(100px);background:var(--ink);color:var(--paper);font-weight:700;padding:12px 18px;transition:transform .25s;z-index:99}
+.toast.show{transform:translateX(-50%) translateY(0)}
+#confetti{position:fixed;inset:0;pointer-events:none;z-index:50}
+.shake{animation:shake .35s}
+@keyframes shake{25%{transform:translateX(-6px)}75%{transform:translateX(6px)}}
+</style>
+</head>
+<body>
+<header>
+  <div class="mast">
+    <div class="logo" id="logo">Daily <em>Five</em></div>
+    <div class="spacer"></div>
+    <button class="navlink" id="streakChip">Streak <span id="streakNum">0</span></button>
+    <button class="navlink" id="statsBtn">Stats</button>
+    <button class="navlink" id="helpBtn">Rules</button>
+  </div>
+  <div class="dateline"><span id="dateTxt"></span><span>No. <b id="issueTxt"></b></span></div>
+</header>
+<div class="wrap" id="adTop"></div>
+<main id="app"></main>
+<div class="wrap" id="adBottom"></div>
+<footer>A new edition every midnight · No account needed · Your progress stays on this device<br><a href="privacy.html">Privacy policy</a></footer>
+
+<dialog id="helpDlg">
+  <div class="kicker">How to play</div>
+  <h2>Five tests. Two minutes.</h2>
+  <p class="mt">Each test scores 0–100, for a total out of 500. Everyone gets the same five puzzles today.</p>
+  <ul class="rules">
+    <li><span>01</span><div><b>Time Sense</b>: stop the clock on the target. It disappears after one second.</div></li>
+    <li><span>02</span><div><b>Mental Math</b>: answer as many sums as you can in 20 seconds.</div></li>
+    <li><span>03</span><div><b>Reflex</b>: tap the moment it turns green. Three tries, averaged.</div></li>
+    <li><span>04</span><div><b>Pattern</b>: remember which tiles were filled in.</div></li>
+    <li><span>05</span><div><b>Quick Count</b>: guess how many dots you saw.</div></li>
+  </ul>
+  <p class="mt">Leaving a test halfway scores it zero, so refreshing won't buy a retry. Play every day to build your streak.</p>
+  <button class="btn primary block mt2" onclick="this.closest('dialog').close()">Got it</button>
+</dialog>
+<dialog id="statsDlg"><div id="statsBody"></div><button class="btn block mt2" onclick="this.closest('dialog').close()">Close</button></dialog>
+<div class="toast" id="toast"></div>
+<canvas id="confetti"></canvas>
+
+<script>
+/* =====================================================================
+   CONFIG: paste your Google AdSense details here.
+   1. Sign up at https://adsense.google.com and add your site.
+   2. Set adsenseClient to your publisher ID (ca-pub-XXXXXXXXXXXXXXXX).
+   3. Create 4 "Display" ad units and paste their slot IDs below.
+   4. Edit ads.txt with your publisher ID and upload it next to index.html.
+   With adsenseClient empty, the page shows placeholder ad boxes.
+   ===================================================================== */
+const CONFIG = {
+  adsenseClient: "",              // e.g. "ca-pub-1234567890123456"
+  adSlots: {
+    top: "",                      // banner under the header
+    bottom: "",                   // banner above the footer
+    between: "",                  // shown on each round's result screen
+    results: ""                   // shown on the final results screen
+  },
+  shareUrl: location.protocol.startsWith("http") ? location.origin + location.pathname : "https://example.com"
+};
+
+/* ---------- utils ---------- */
+const $ = s => document.querySelector(s);
+const app = $("#app");
+const EPOCH = new Date(2026, 0, 1);
+function dayNumber(d = new Date()){
+  const a = Date.UTC(d.getFullYear(), d.getMonth(), d.getDate());
+  const b = Date.UTC(EPOCH.getFullYear(), EPOCH.getMonth(), EPOCH.getDate());
+  return Math.floor((a - b) / 864e5) + 1;
+}
+function mulberry32(a){return function(){a|=0;a=a+0x6D2B79F5|0;let t=Math.imul(a^a>>>15,1|a);t=t+Math.imul(t^t>>>7,61|t)^t;return((t^t>>>14)>>>0)/4294967296}}
+const clamp = (v,a,b)=>Math.max(a,Math.min(b,v));
+const css = name => getComputedStyle(document.documentElement).getPropertyValue(name).trim();
+function toast(msg){const t=$("#toast");t.textContent=msg;t.classList.add("show");clearTimeout(t._h);t._h=setTimeout(()=>t.classList.remove("show"),2000)}
+function colorFor(s){return s>=90?"var(--good)":s>=70?"var(--ok)":s>=40?"var(--meh)":"var(--bad)"}
+function emojiFor(s){return s>=90?"🟩":s>=70?"🟨":s>=40?"🟧":"🟥"}   // share text only
+function verdictFor(s){return s>=97?"Perfect.":s>=90?"Superb.":s>=75?"Very good.":s>=55?"Decent.":s>=30?"Not bad.":s>0?"Rough one.":"Zero. Oof."}
+function rankFor(t){return t>=460?"Superhuman":t>=410?"Razor Sharp":t>=350?"Sharp":t>=280?"Solid":t>=200?"Warming Up":"Still Asleep"}
+const pad2 = i => String(i+1).padStart(2,"0");
+
+/* ---------- storage (local only, no database) ---------- */
+const KEY = "dailyfive_v1";
+let store = {history:{}, inProgress:null, practiceBest:0, practiceRuns:0,
+  xp:0, badges:{}, freezes:0, frozen:[], testBest:[null,null,null,null,null]};
+try { const s = JSON.parse(localStorage.getItem(KEY)); if (s) store = Object.assign(store, s); } catch(e){}
+function save(){ try{ localStorage.setItem(KEY, JSON.stringify(store)); }catch(e){} }
+const mean = a => a.length ? a.reduce((x,y)=>x+y,0)/a.length : 0;
+
+function computeStats(){
+  const h = store.history, today = dayNumber(), fz = new Set(store.frozen);
+  const days = Object.keys(h).map(Number).sort((a,b)=>a-b);
+  const totals = days.map(d=>h[d].total);
+  const kept = d => h[d] || fz.has(d);           // a played day, or one a streak saver covered
+  let streak = 0, d = h[today] ? today : today - 1;
+  while (kept(d)) { streak++; d--; }
+  const chain = [...new Set([...days, ...store.frozen])].sort((a,b)=>a-b);
+  let maxStreak = 0, run = 0, prev = null;
+  for (const x of chain){ run = (prev !== null && x === prev + 1) ? run + 1 : 1; maxStreak = Math.max(maxStreak, run); prev = x; }
+  return { played: days.length, best: totals.length ? Math.max(...totals) : 0,
+    avg: totals.length ? Math.round(mean(totals)) : 0, streak, maxStreak, days, totals };
+}
+
+/* ---------- progress: is the player getting better? ---------- */
+// Per test: average of the last 5 daily plays vs. the 5 before (or the first 5 ever).
+function testTrends(excludeDay){
+  const days = Object.keys(store.history).map(Number).filter(d => d !== excludeDay).sort((a,b)=>a-b);
+  return ROUNDS.map((r,i) => {
+    const s = days.map(d => store.history[d].scores[i]).filter(v => typeof v === "number");
+    const recent = s.slice(-5), earlier = s.length > 5 ? s.slice(Math.max(0, s.length-10), s.length-5) : [];
+    return { name: r.name, avg: s.length ? Math.round(mean(s)) : null, recentAvg: recent.length ? Math.round(mean(recent)) : null,
+      change: earlier.length >= 2 ? Math.round(mean(recent) - mean(earlier)) : null, plays: s.length, best: store.testBest[i] };
+  });
+}
+function strongestWeakest(){
+  const t = testTrends().filter(x => x.recentAvg !== null);
+  if (t.length < 5) return null;
+  const sorted = [...t].sort((a,b)=>b.recentAvg-a.recentAvg);
+  return { strong: sorted[0], weak: sorted[sorted.length-1] };
+}
+
+/* ---------- levels & XP ---------- */
+const xpForLevel = L => 100 * L * (L - 1);       // total XP needed to reach level L
+function levelInfo(xp = store.xp){
+  let L = 1; while (xp >= xpForLevel(L+1)) L++;
+  const from = xpForLevel(L), to = xpForLevel(L+1);
+  return { level: L, title: levelTitle(L), into: xp - from, need: to - from, pct: Math.round((xp-from)/(to-from)*100) };
+}
+function levelTitle(L){ return L>=25?"Grandmaster":L>=18?"Legend":L>=12?"Mastermind":L>=8?"Quick Thinker":L>=5?"Sharp Mind":L>=3?"Apprentice":"Rookie"; }
+
+/* ---------- badges ---------- */
+const BADGES = [
+  {id:"first",    name:"First Edition",   desc:"Finish your first Daily Five", test:c=>c.daily},
+  {id:"streak3",  name:"On a Roll",        desc:"Reach a 3-day streak",         test:c=>c.streak>=3},
+  {id:"streak7",  name:"Week Warrior",     desc:"Reach a 7-day streak",         test:c=>c.streak>=7},
+  {id:"streak30", name:"Monthly Mind",     desc:"Reach a 30-day streak",        test:c=>c.streak>=30},
+  {id:"s300",     name:"Three Hundred",    desc:"Score 300+ in a daily",        test:c=>c.daily&&c.total>=300},
+  {id:"s400",     name:"Four Hundred Club",desc:"Score 400+ in a daily",        test:c=>c.daily&&c.total>=400},
+  {id:"s450",     name:"Elite",            desc:"Score 450+ in a daily",        test:c=>c.daily&&c.total>=450},
+  {id:"heights",  name:"New Heights",      desc:"Beat your best daily score",   test:c=>c.daily&&c.prevBest!==null&&c.total>c.prevBest},
+  {id:"comeback", name:"Comeback",         desc:"Beat yesterday's score by 50+",test:c=>c.daily&&c.yesterday!==null&&c.total-c.yesterday>=50},
+  {id:"allround", name:"All-Rounder",      desc:"Score 70+ on every test in one run", test:c=>c.scores.every(s=>s>=70)},
+  {id:"flawless", name:"Flawless",         desc:"Score 100 on any test",        test:c=>c.scores.some(s=>s>=100)},
+  {id:"clock",    name:"Human Clock",      desc:"Score 95+ on Time Sense",      test:c=>c.scores[0]>=95},
+  {id:"calc",     name:"Calculator",       desc:"Score 100 on Mental Math",     test:c=>c.scores[1]>=100},
+  {id:"bolt",     name:"Lightning",        desc:"Score 90+ on Reflex",          test:c=>c.scores[2]>=90},
+  {id:"photo",    name:"Photographic",     desc:"Score 100 on Pattern",         test:c=>c.scores[3]>=100},
+  {id:"eagle",    name:"Eagle Eye",        desc:"Score 95+ on Quick Count",     test:c=>c.scores[4]>=95},
+  {id:"gym",      name:"Practice Makes Perfect", desc:"Finish 10 practice runs", test:c=>store.practiceRuns>=10},
+  {id:"saved",    name:"Saved!",           desc:"Have a streak saver protect your streak", test:c=>store.frozen.length>0},
+  {id:"lvl5",     name:"High Five",        desc:"Reach level 5",                test:c=>levelInfo().level>=5},
+  {id:"lvl10",    name:"Double Digits",    desc:"Reach level 10",               test:c=>levelInfo().level>=10},
+];
+function checkBadges(ctx){
+  const fresh = [];
+  for (const b of BADGES) if (!store.badges[b.id] && b.test(ctx)){ store.badges[b.id] = dayNumber(); fresh.push(b); }
+  return fresh;
+}
+
+/* ---------- streak savers ---------- */
+// Earned at every 7-day streak (max 2 held). Automatically cover missed days so a streak survives.
+function applyStreakSavers(){
+  const today = dayNumber(), h = store.history;
+  const kept = [...Object.keys(h).map(Number), ...store.frozen];
+  if (!kept.length) return 0;
+  const last = Math.max(...kept), missed = today - last - 1;
+  if (missed <= 0 || missed > store.freezes) return 0;
+  for (let d = last + 1; d < today; d++) store.frozen.push(d);
+  store.freezes -= missed; save();
+  return missed;
+}
+
+function refreshHeader(){
+  $("#streakNum").textContent = computeStats().streak;
+  $("#dateTxt").textContent = new Date().toLocaleDateString(undefined,{weekday:"long", month:"long", day:"numeric"});
+  $("#issueTxt").textContent = dayNumber();
+}
+
+/* ---------- ads ---------- */
+let adsLoaded = false;
+function loadAdsScript(){
+  if (!CONFIG.adsenseClient || adsLoaded) return;
+  adsLoaded = true;
+  const s = document.createElement("script");
+  s.async = true; s.crossOrigin = "anonymous";
+  s.src = "https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=" + encodeURIComponent(CONFIG.adsenseClient);
+  document.head.appendChild(s);
+}
+// Placeholder boxes only show while testing locally; visitors on the live site never see them.
+const IS_LOCAL = /^(localhost|127\.0\.0\.1|\[::1\]|)$/.test(location.hostname) || location.protocol === "file:";
+function adUnit(key){
+  const slot = CONFIG.adSlots[key];
+  if (CONFIG.adsenseClient && slot){
+    return `<div class="ad"><div class="adlabel">Advertisement</div><ins class="adsbygoogle" style="display:block" data-ad-client="${CONFIG.adsenseClient}" data-ad-slot="${slot}" data-ad-format="auto" data-full-width-responsive="true"></ins></div>`;
+  }
+  if (!IS_LOCAL) return "";
+  return `<div class="ad ad-ph">Advertisement<small>Ad slot "${key}": add your AdSense IDs in CONFIG</small></div>`;
+}
+// Keyboard support for tap-to-play controls (Enter or Space).
+function onKey(el, fn){ el.addEventListener("keydown", e => { if ((e.key === "Enter" || e.key === " ") && !e.repeat){ e.preventDefault(); fn(e); } }); }
+function fillAds(){
+  if (!CONFIG.adsenseClient) return;
+  document.querySelectorAll("ins.adsbygoogle:not([data-filled])").forEach(el=>{
+    el.setAttribute("data-filled","1");
+    try { (window.adsbygoogle = window.adsbygoogle || []).push({}); } catch(e){}
+  });
+}
+
+/* ---------- the five rounds ---------- */
+const ROUNDS = [
+{ id:"time", name:"Time Sense", blurb:"Stop the clock",
+  rules:"Press Start, then Stop when you think the target time has passed. The clock vanishes after one second.",
+  play(el, rng, done){
+    const target = Math.round((3 + rng()*5) * 100) / 100;
+    el.innerHTML = `<div class="center"><div class="kicker">Stop at exactly</div><h1>${target.toFixed(2)} seconds</h1>
+      <div class="timer" id="tm">0.00</div><button class="btn primary block huge" id="tb">Start</button>
+      <p class="mt">Count in your head. No peeking.</p></div>`;
+    const tm = el.querySelector("#tm"), tb = el.querySelector("#tb");
+    let start = 0, raf = 0;
+    const tick = () => { const s = (performance.now()-start)/1000;
+      if (s < 1) tm.textContent = s.toFixed(2); else { tm.textContent = "?.??"; tm.classList.add("blur"); }
+      raf = requestAnimationFrame(tick); };
+    tb.focus();
+    const press = () => {
+      if (!start){ start = performance.now(); tb.textContent = "Stop"; tick(); return; }
+      if (tb.disabled) return;
+      cancelAnimationFrame(raf); tb.disabled = true;
+      const t = (performance.now()-start)/1000, err = Math.abs(t-target);
+      tm.classList.remove("blur"); tm.textContent = t.toFixed(2);
+      const score = Math.round(100 * Math.max(0, 1 - err/1.5));
+      done(score, `Target ${target.toFixed(2)}s. You stopped at <b>${t.toFixed(2)}s</b> (${err < .005 ? "spot on" : (t>target?"+":"−") + err.toFixed(2) + "s"}).`);
+    };
+    tb.addEventListener("pointerdown", press);
+    onKey(tb, press);
+  }},
+{ id:"math", name:"Mental Math", blurb:"Sums against the clock",
+  rules:"Answer as many sums as you can in 20 seconds by tapping the right answer. 12 correct is a perfect score. Wrong taps cost points.",
+  play(el, rng, done){
+    const LIMIT = 20000, PERFECT = 12;
+    const ri = (a, b) => a + Math.floor(rng() * (b - a + 1));
+    const probs = Array.from({length:60}, () => {
+      const k = Math.floor(rng()*4); let a, b, ans, op;
+      if (k === 0){ a = ri(11,89); b = ri(11,89); ans = a+b; op = "+"; }
+      else if (k === 1){ a = ri(30,99); b = ri(5,a-5); ans = a-b; op = "−"; }
+      else if (k === 2){ a = ri(3,12); b = ri(3,12); ans = a*b; op = "×"; }
+      else { b = ri(2,11); ans = ri(2,12); a = b*ans; op = "÷"; }
+      const opts = new Set([ans]);
+      while (opts.size < 4){ const d = ri(1,10) * (rng() < .5 ? -1 : 1); if (ans + d > 0) opts.add(ans + d); }
+      const arr = [...opts];
+      for (let i = arr.length-1; i > 0; i--){ const j = Math.floor(rng()*(i+1)); [arr[i],arr[j]] = [arr[j],arr[i]]; }
+      return {q:`${a} ${op} ${b}`, ans, opts:arr};
+    });
+    el.innerHTML = `<div class="center"><div class="kicker" id="mtag">20 seconds on the clock</div>
+      <div class="mathq" id="mq">Ready?</div></div>
+      <div class="bar"><i id="mbar"></i></div>
+      <div class="opts" id="mo"><button class="btn primary" id="mstart" style="grid-column:1/-1">Start</button></div>
+      <p class="center mt" id="mlog">Correct 0 · Wrong 0</p>`;
+    const q = el.querySelector("#mq"), mo = el.querySelector("#mo"), tag = el.querySelector("#mtag"),
+          bar = el.querySelector("#mbar"), log = el.querySelector("#mlog");
+    let i = 0, right = 0, wrong = 0, t0 = 0, over = false, raf = 0;
+    const show = () => {
+      const p = probs[i % probs.length]; q.textContent = p.q;
+      mo.innerHTML = p.opts.map(o => `<button class="btn" data-v="${o}">${o}</button>`).join("");
+    };
+    const end = () => {
+      over = true; cancelAnimationFrame(raf); document.removeEventListener("keydown", keyH);
+      mo.querySelectorAll("button").forEach(b => b.disabled = true);
+      tag.textContent = "Time's up"; q.textContent = `${right} correct`;
+      const score = clamp(Math.round(right * 100 / PERFECT) - wrong * 5, 0, 100);
+      done(score, `<b>${right} correct</b> and ${wrong} wrong in 20 seconds.${wrong ? ` Wrong taps cost ${wrong*5} points.` : ""}`);
+    };
+    const tick = () => {
+      if (!el.isConnected){ over = true; document.removeEventListener("keydown", keyH); return; }
+      const left = Math.max(0, LIMIT - (performance.now() - t0));
+      bar.style.width = (left / LIMIT * 100) + "%";
+      tag.textContent = `${(left/1000).toFixed(1)}s left`;
+      if (left <= 0) return end();
+      raf = requestAnimationFrame(tick);
+    };
+    const handle = b => {
+      if (!b || over || !mo.contains(b)) return;
+      if (b.id === "mstart"){ t0 = performance.now(); show(); tick(); return; }
+      if (!t0) return;
+      if (+b.dataset.v === probs[i % probs.length].ans){ right++; q.classList.remove("ok-flash"); void q.offsetWidth; q.classList.add("ok-flash"); }
+      else { wrong++; q.classList.remove("shake"); void q.offsetWidth; q.classList.add("shake"); }
+      log.textContent = `Correct ${right} · Wrong ${wrong}`;
+      i++; show();
+    };
+    mo.addEventListener("pointerdown", e => handle(e.target.closest("button")));
+    // Keyboard: Enter/Space on the focused button, or keys 1–4 to pick an answer.
+    const keyH = e => {
+      if (over || e.repeat) return;
+      if (t0 && /^[1-4]$/.test(e.key)) handle(mo.querySelectorAll("button")[+e.key - 1]);
+      else if ((e.key === "Enter" || e.key === " ") && mo.contains(document.activeElement)){ e.preventDefault(); handle(document.activeElement); }
+    };
+    document.addEventListener("keydown", keyH);
+    el.querySelector("#mstart").focus();
+  }},
+{ id:"reflex", name:"Reflex", blurb:"Tap on green",
+  rules:"Tap the box the instant it turns green. Three tries, averaged. Tapping early costs you.",
+  play(el, rng, done){
+    el.innerHTML = `<div class="reflex r-idle" id="rx" tabindex="0" role="button" aria-live="assertive">Tap to begin<small>Try 1 of 3</small></div><p class="center mt" id="rlog">&nbsp;</p>`;
+    const rx = el.querySelector("#rx"), log = el.querySelector("#rlog");
+    rx.focus();
+    let state = "idle", t0 = 0, timer = 0; const times = [];
+    const set = (cls, html) => { rx.className = "reflex " + cls; rx.innerHTML = html; };
+    const arm = () => { state = "wait"; set("r-wait", "Wait for green…");
+      timer = setTimeout(() => { state = "go"; t0 = performance.now(); set("r-go", "Tap!"); }, 1200 + Math.random()*2600); };
+    const record = ms => { times.push(ms); log.textContent = times.map((t,i)=>`#${i+1} ${t}ms`).join("   ");
+      if (times.length === 3){ state = "done";
+        const avg = Math.round(times.reduce((a,b)=>a+b,0)/3);
+        set("r-idle", `${avg} ms<small>Average</small>`);
+        done(clamp(Math.round((420-avg)/2.2),0,100), `Your times: ${times.join(" · ")} ms, <b>${avg} ms average</b>.`);
+      } };
+    const hit = e => {
+      e.preventDefault();
+      if (state === "idle" || state === "between") arm();
+      else if (state === "wait"){ clearTimeout(timer); state = "between"; set("r-early", `Too early<small>+600 ms · tap for try ${Math.min(3,times.length+2)} of 3</small>`); record(600); }
+      else if (state === "go"){ const ms = Math.round(performance.now()-t0); state = "between";
+        set("r-idle", `${ms} ms<small>${times.length<2?`Tap for try ${times.length+2} of 3`:""}</small>`); record(ms); }
+    };
+    rx.addEventListener("pointerdown", hit);
+    onKey(rx, hit);
+  }},
+{ id:"pattern", name:"Pattern", blurb:"Remember the tiles",
+  rules:"Seven tiles will be filled in for two seconds. Then tap the same seven tiles from memory.",
+  play(el, rng, done){
+    const N = 7, idx = [...Array(25).keys()];
+    for (let i = idx.length-1; i > 0; i--){ const j = Math.floor(rng()*(i+1)); [idx[i],idx[j]] = [idx[j],idx[i]]; }
+    const target = new Set(idx.slice(0, N));
+    el.innerHTML = `<div class="center"><div class="kicker" id="ptag">Get ready</div></div><div class="grid" id="pg">${
+      Array.from({length:25},(_,i)=>`<button data-i="${i}" disabled aria-label="Tile ${i+1}"></button>`).join("")}</div><div class="bar"><i id="pbar" style="width:0"></i></div>`;
+    const cells = [...el.querySelectorAll("#pg button")], tag = el.querySelector("#ptag"), bar = el.querySelector("#pbar");
+    setTimeout(() => {
+      tag.textContent = "Memorize"; target.forEach(i => cells[i].classList.add("lit"));
+      bar.animate([{width:"100%"},{width:"0%"}], {duration:2000, fill:"forwards"});
+      setTimeout(() => {
+        cells.forEach(c => { c.classList.remove("lit"); c.disabled = false; });
+        const picks = new Set(); tag.textContent = `Tap the 7 tiles · 0/${N}`;
+        cells.forEach(c => c.addEventListener("click", () => {
+          const i = +c.dataset.i; if (picks.size >= N) return;
+          if (picks.has(i)){ picks.delete(i); c.classList.remove("pick"); }
+          else { picks.add(i); c.classList.add("pick"); }
+          tag.textContent = `Tap the 7 tiles · ${picks.size}/${N}`;
+          if (picks.size === N){
+            cells.forEach(x => x.disabled = true);
+            let hits = 0;
+            cells.forEach((x,k) => { x.classList.remove("pick");
+              if (picks.has(k) && target.has(k)){ x.classList.add("hit"); hits++; }
+              else if (picks.has(k)) x.classList.add("wrong");
+              else if (target.has(k)) x.classList.add("miss"); });
+            tag.textContent = `${hits} of ${N} correct`;
+            done(Math.round(hits/N*100), `You found <b>${hits} of ${N}</b> tiles.`);
+          }
+        }));
+      }, 2000);
+    }, 700);
+  }},
+{ id:"count", name:"Quick Count", blurb:"Estimate the dots",
+  rules:"A cloud of dots appears for two and a half seconds. Guess how many there were. Closer earns more.",
+  play(el, rng, done){
+    const n = 35 + Math.floor(rng()*170);
+    const pts = Array.from({length:n}, () => [0.05 + rng()*0.9, 0.05 + rng()*0.9, 0.008 + rng()*0.008, rng() < 0.25 ? 1 : 0]);
+    const cols = [css("--ink"), css("--accent")];
+    el.innerHTML = `<div class="center"><div class="kicker" id="ctag">Get ready</div></div><canvas class="dots" id="cv"></canvas><div class="bar"><i id="cbar2" style="width:0"></i></div><div id="cin"></div>`;
+    const cv = el.querySelector("#cv"), ctx = cv.getContext("2d");
+    const size = cv.getBoundingClientRect().width || 320, dpr = window.devicePixelRatio || 1;
+    cv.width = size*dpr; cv.height = size*dpr; ctx.scale(dpr, dpr);
+    const draw = () => pts.forEach(([x,y,r,c]) => { ctx.beginPath(); ctx.arc(x*size, y*size, r*size, 0, 7); ctx.fillStyle = cols[c]; ctx.fill(); });
+    setTimeout(() => {
+      el.querySelector("#ctag").textContent = "How many dots?";
+      draw();
+      el.querySelector("#cbar2").animate([{width:"100%"},{width:"0%"}], {duration:2500, fill:"forwards"});
+      setTimeout(() => {
+        ctx.clearRect(0,0,size,size);
+        el.querySelector("#cin").innerHTML = `<input class="num" id="guess" type="number" inputmode="numeric" placeholder="Your guess" min="0" max="999"><button class="btn primary block" id="gb">Submit</button>`;
+        const g = el.querySelector("#guess"); g.focus();
+        const submit = () => {
+          const v = parseInt(g.value, 10);
+          if (!(v >= 0)){ g.classList.remove("shake"); void g.offsetWidth; g.classList.add("shake"); return; }
+          el.querySelector("#gb").disabled = true; g.disabled = true;
+          draw();
+          const err = Math.abs(v-n)/n;
+          done(Math.round(Math.max(0, 100 - err*250)), `There were <b>${n}</b> dots. You guessed ${v} (${Math.round(err*100)}% off).`);
+        };
+        el.querySelector("#gb").onclick = submit;
+        g.onkeydown = e => { if (e.key === "Enter") submit(); };
+      }, 2500);
+    }, 700);
+  }}
+];
+
+/* ---------- game flow ---------- */
+let game = null; // {mode, seed, day, idx, scores, details}
+
+function progressBar(){
+  return `<div class="progress">${ROUNDS.map((_,i)=>`<span class="${i<game.idx?"done":i===game.idx?"cur":""}"></span>`).join("")}</div>`;
+}
+
+// A test that was started but never finished (reload, closed tab) scores 0.
+function settleAbandoned(){
+  const ip = store.inProgress;
+  if (ip && ip.active !== null && ip.scores.length === ip.active){
+    ip.scores.push(0); ip.details.push("Left mid-test"); ip.active = null; save();
+    toast("You left a test halfway, so it scored 0");
+  }
+}
+// If all 5 tests were played but the app closed before "See my score", record the run anyway
+// so the player never loses a day or their streak.
+function finalizeLeftoverRun(){
+  settleAbandoned();
+  const ip = store.inProgress;
+  if (!ip) return false;
+  if (ip.scores.length >= ROUNDS.length && !store.history[ip.day]){
+    game = {mode:"daily", seed: ip.day*1000003, day: ip.day, idx: ROUNDS.length, scores: ip.scores, details: ip.details};
+    finish(); return true;
+  }
+  if (ip.day !== dayNumber()){ store.inProgress = null; save(); }
+  return false;
+}
+
+function startDaily(){
+  const day = dayNumber();
+  settleAbandoned();
+  let ip = store.inProgress;
+  if (!ip || ip.day !== day) ip = store.inProgress = {day, scores:[], details:[], active:null};
+  game = {mode:"daily", seed: day*1000003, day, idx: ip.scores.length, scores: ip.scores, details: ip.details};
+  game.idx >= ROUNDS.length ? finish() : showIntro();
+}
+function startPractice(){
+  game = {mode:"practice", seed: Math.floor(Math.random()*1e9), idx:0, scores:[], details:[]};
+  showIntro();
+}
+
+function showIntro(){
+  const r = ROUNDS[game.idx];
+  app.innerHTML = progressBar() + `<section class="card center">
+    <div class="kicker">${game.mode === "practice" ? "Practice · " : ""}Test ${game.idx+1} of 5</div>
+    <div class="numeral">${pad2(game.idx)}</div><h2>${r.name}</h2><p class="mt">${r.rules}</p>
+    <button class="btn primary block huge mt2" id="go">I'm ready</button></section>`;
+  $("#go").onclick = playRound;
+}
+
+function playRound(){
+  if (game.mode === "daily"){ store.inProgress.active = game.idx; save(); }
+  const r = ROUNDS[game.idx];
+  app.innerHTML = progressBar() + `<section class="card" id="stage"></section>`;
+  const rng = mulberry32(game.seed + (game.idx+1)*7919);
+  let finished = false;
+  r.play($("#stage"), rng, (score, detail) => {
+    if (finished) return; finished = true;
+    game.scores.push(score); game.details.push(detail);
+    if (game.mode === "daily"){ store.inProgress.active = null; save(); }
+    setTimeout(() => showRoundResult(score, detail), 1100);
+  });
+}
+
+function countUp(el, to, ms = 700){
+  const t0 = performance.now();
+  const step = now => { const p = Math.min(1, (now-t0)/ms); el.textContent = Math.round(to * (1 - Math.pow(1-p, 3))); if (p < 1) requestAnimationFrame(step); };
+  requestAnimationFrame(step);
+}
+
+// How this score compares with the player's own history (shown under each test result).
+function roundNote(i, score){
+  const prevBest = store.testBest[i];
+  const t = testTrends(game.mode === "daily" ? game.day : undefined)[i];
+  let note;
+  if (prevBest === null || prevBest === undefined) note = "Your first score on this test. Now you have a number to beat.";
+  else if (score > prevBest) note = `<b>New personal best!</b> Your old best was ${prevBest}.`;
+  else if (score === prevBest) note = `<b>Matched your personal best</b> of ${prevBest}.`;
+  else if (t.avg !== null && score > t.avg) note = `<b>+${score - t.avg}</b> above your average of ${t.avg}.`;
+  else if (t.avg !== null) note = `Your average here is ${t.avg} and your best is ${prevBest}. You'll get it next time.`;
+  else note = `Your best here is ${prevBest}.`;
+  const pb = prevBest !== null && prevBest !== undefined && score > prevBest;
+  if (prevBest === null || prevBest === undefined || score > prevBest){ store.testBest[i] = score; save(); }
+  return {note, pb};
+}
+
+function showRoundResult(score, detail){
+  const r = ROUNDS[game.idx];
+  const {note, pb} = roundNote(game.idx, score);
+  game.idx++;
+  const last = game.idx >= ROUNDS.length;
+  app.innerHTML = progressBar() + `<section class="card center">
+    <div class="kicker">${pad2(game.idx-1)} · ${r.name}</div>
+    ${pb ? `<div class="pb-stamp">Personal best</div>` : ""}
+    <div class="score-big" id="sc">0</div>
+    <div class="verdict" style="color:${colorFor(score)}">${verdictFor(score)}</div>
+    <div class="detail">${detail}</div>
+    <div class="note">${note}</div>
+    <button class="btn primary block huge mt2" id="nx">${last ? "See my score" : "Next test"} →</button></section>` + adUnit("between");
+  countUp($("#sc"), score);
+  if (score >= 95 || pb) confetti(pb ? 70 : 50);
+  fillAds();
+  $("#nx").onclick = () => last ? finish() : showIntro();
+}
+
+function finish(){
+  const total = game.scores.reduce((a,b)=>a+b,0);
+  const before = levelInfo();
+  if (game.mode === "daily"){
+    const st0 = computeStats();
+    const prevBest = st0.played ? st0.best : null;
+    const yesterday = store.history[game.day-1] ? store.history[game.day-1].total : null;
+    store.history[game.day] = {scores: game.scores.slice(), total};
+    store.inProgress = null;
+    const st = computeStats();
+    const streakBonus = Math.min(100, st.streak * 10);
+    store.xp += total + streakBonus;
+    let earnedSaver = false;
+    if (st.streak > 0 && st.streak % 7 === 0 && store.freezes < 2){ store.freezes++; earnedSaver = true; }
+    const badges = checkBadges({daily:true, total, scores:game.scores, streak:st.streak, prevBest, yesterday});
+    save(); refreshHeader();
+    renderResults(game.day, game.scores, total, {xp: total, streakBonus, before, after: levelInfo(), earnedSaver, badges});
+  } else {
+    store.practiceRuns++; const isBest = total > store.practiceBest;
+    if (isBest) store.practiceBest = total;
+    const xp = Math.round(total / 2); store.xp += xp;
+    const badges = checkBadges({daily:false, total, scores:game.scores, streak:computeStats().streak, prevBest:null, yesterday:null});
+    save();
+    renderPracticeResults(total, isBest, {xp, streakBonus:0, before, after: levelInfo(), badges});
+  }
+  game = null;
+}
+
+function squaresHtml(scores){ return `<div class="squares">${scores.map(s=>`<i style="background:${colorFor(s)}" title="${s}"></i>`).join("")}</div>`; }
+function breakdownHtml(scores){
+  return `<div class="breakdown">${ROUNDS.map((r,i)=>`<div><span class="n">${pad2(i)}</span><span class="t">${r.name}</span>
+    <span class="mini"><i style="width:${scores[i]}%;background:${colorFor(scores[i])}"></i></span><b>${scores[i]}</b></div>`).join("")}</div>`;
+}
+
+// Little line chart of recent daily totals; the last point is highlighted.
+function sparkline(values){
+  if (values.length < 2) return "";
+  const W = 300, H = 64, p = 6, lo = Math.max(0, Math.min(...values) - 30), hi = Math.min(500, Math.max(...values) + 30);
+  const pts = values.map((v,i) => [p + i*(W-2*p)/(values.length-1), H - p - (v-lo)/(hi-lo || 1)*(H-2*p)]);
+  const last = pts[pts.length-1];
+  return `<svg class="spark" viewBox="0 0 ${W} ${H}" role="img" aria-label="Your recent daily scores">
+    <polyline points="${pts.map(q=>q.map(n=>n.toFixed(1)).join(",")).join(" ")}" fill="none" stroke="var(--ink)" stroke-width="2" stroke-linejoin="round"/>
+    ${pts.slice(0,-1).map(q=>`<circle cx="${q[0].toFixed(1)}" cy="${q[1].toFixed(1)}" r="2.5" fill="var(--ink)"/>`).join("")}
+    <circle cx="${last[0].toFixed(1)}" cy="${last[1].toFixed(1)}" r="5" fill="var(--accent)"/></svg>`;
+}
+
+// "Are you getting better?" panel on the results screen.
+function progressHtml(day, total){
+  const prior = Object.keys(store.history).map(Number).filter(d => d < day).sort((a,b)=>a-b);
+  if (!prior.length) return `<div class="panel"><div class="kicker">Your progress</div><p>This is your first score. Come back tomorrow and we'll show you whether you're improving.</p></div>`;
+  const yest = store.history[day-1] ? store.history[day-1].total : null;
+  const avg = Math.round(mean(prior.slice(-7).map(d => store.history[d].total)));
+  const best = Math.max(...prior.map(d => store.history[d].total));
+  const diff = total - avg;
+  let head;
+  if (total > best) head = `<b>Your best day ever.</b> You beat your old record of ${best}.`;
+  else if (diff > 0) head = `<b>+${diff} above your average.</b> You're sharper than usual today.`;
+  else if (diff === 0) head = `<b>Right on your average</b> of ${avg}. Consistent.`;
+  else head = `A bit under your average of ${avg}. Everyone has off days; your best is <b>${best}</b>.`;
+  const rows = [];
+  if (yest !== null) rows.push(`<div><span>vs. yesterday</span>${delta(total - yest)}</div>`);
+  rows.push(`<div><span>vs. your ${Math.min(7, prior.length)}-day average</span>${delta(diff)}</div>`);
+  const series = [...prior.slice(-13), day].map(d => store.history[d].total);
+  const improving = testTrends().filter(t => t.change !== null && t.change > 0).sort((a,b)=>b.change-a.change)[0];
+  return `<div class="panel"><div class="kicker">Your progress</div><p>${head}</p>
+    <div class="deltas">${rows.join("")}</div>${sparkline(series)}
+    ${improving ? `<p class="mt">Most improved: <b>${improving.name}</b>, up ${improving.change} points over your last 5 games.</p>` : ""}</div>`;
+}
+function delta(n){ return `<b class="${n>0?"up":n<0?"down":""}">${n>0?"▲ +"+n:n<0?"▼ −"+(-n):"= 0"}</b>`; }
+
+// XP / level-up / streak saver / badge rewards shown right after a run.
+function rewardsHtml(rw){
+  if (!rw) return "";
+  const lv = rw.after, up = rw.after.level > rw.before.level;
+  return `<div class="panel rewards">
+    <div class="kicker">Rewards</div>
+    <div class="xpline"><b>+${rw.xp} XP</b>${rw.streakBonus ? `<span>+${rw.streakBonus} streak bonus</span>` : ""}</div>
+    ${up ? `<div class="levelup">Level up! You're now level ${lv.level}, <i>${lv.title}</i></div>` : ""}
+    ${levelBar(lv)}
+    ${rw.earnedSaver ? `<p class="mt"><b>You earned a streak saver.</b> If you miss a day, it protects your streak automatically.</p>` : ""}
+    ${rw.badges && rw.badges.length ? `<div class="mt">${rw.badges.map(b => `<div class="badge new"><i class="medal">★</i><div><b>Badge unlocked: ${b.name}</b><small>${b.desc}</small></div></div>`).join("")}</div>` : ""}
+  </div>`;
+}
+function levelBar(lv = levelInfo()){
+  return `<div class="lvl"><span>Level <b>${lv.level}</b> · ${lv.title}</span><span>${lv.into} / ${lv.need} XP</span></div>
+    <div class="lvlbar"><i style="width:${lv.pct}%"></i></div>`;
+}
+
+function shareText(day, scores, total){
+  return `Daily Five No. ${day}: ${total}/500 (${rankFor(total)})\n${scores.map(emojiFor).join("")}\nStreak: ${computeStats().streak} days\n${CONFIG.shareUrl}`;
+}
+
+function renderResults(day, scores, total, rewards){
+  const fresh = !!rewards;
+  app.innerHTML = `<section class="card center">
+    <div class="kicker">No. ${day} · Final score</div>
+    <div class="score-big mt" id="tot">${fresh ? 0 : total}</div>
+    <p class="mt"><b>out of 500</b></p>
+    <div class="verdict">${rankFor(total)}</div>
+    ${squaresHtml(scores)}
+    ${breakdownHtml(scores)}
+    ${rewardsHtml(rewards)}
+    ${progressHtml(day, total)}
+    <button class="btn primary block huge mt2" id="share">Share my score</button>
+    <p class="mt">Next edition in <span class="countdown" id="cd"></span></p>
+    <button class="btn block mt" id="prac">Practice mode (unlimited)</button>
+  </section>` + adUnit("results");
+  if (fresh){
+    countUp($("#tot"), total, 1200);
+    if (total >= 400 || (rewards.after.level > rewards.before.level)) setTimeout(()=>confetti(140), 600);
+    if (rewards.badges.length) setTimeout(()=>toast(`Badge unlocked: ${rewards.badges[0].name}`), 1400);
+  }
+  $("#share").onclick = () => share(shareText(day, scores, total));
+  $("#prac").onclick = startPractice;
+  startCountdown(); fillAds();
+}
+
+function renderPracticeResults(total, isBest, rewards){
+  app.innerHTML = `<section class="card center">
+    <div class="kicker">Practice run</div>
+    <div class="score-big mt" id="tot">0</div><p class="mt"><b>out of 500</b></p>
+    <div class="verdict">${rankFor(total)}</div>
+    <p class="mt">${isBest ? "<b>New practice best.</b>" : `Practice best: <b>${store.practiceBest}</b>`}</p>
+    ${rewardsHtml(rewards)}
+    <button class="btn primary block huge mt2" id="again">Go again ↻</button>
+    <button class="btn block mt" id="home">Back to today's edition</button></section>` + adUnit("results");
+  countUp($("#tot"), total, 1000);
+  if (isBest || rewards.after.level > rewards.before.level) setTimeout(()=>confetti(100), 500);
+  $("#again").onclick = startPractice; $("#home").onclick = renderHome; fillAds();
+}
+
+async function share(text){
+  try {
+    if (navigator.share && matchMedia("(pointer:coarse)").matches){ await navigator.share({text}); return; }
+    await navigator.clipboard.writeText(text); toast("Copied. Paste it anywhere.");
+  } catch(e){
+    if (e && e.name === "AbortError") return;
+    prompt("Copy your score:", text);
+  }
+}
+
+let cdTimer = 0;
+function startCountdown(){
+  clearInterval(cdTimer);
+  const tick = () => {
+    const el = $("#cd"); if (!el){ clearInterval(cdTimer); return; }
+    const now = new Date(), next = new Date(now.getFullYear(), now.getMonth(), now.getDate()+1);
+    const s = Math.max(0, Math.floor((next-now)/1000));
+    el.textContent = [Math.floor(s/3600), Math.floor(s%3600/60), s%60].map(x=>String(x).padStart(2,"0")).join(":");
+    if (s === 0) setTimeout(renderHome, 1500);
+  };
+  tick(); cdTimer = setInterval(tick, 1000);
+}
+
+// Today's personal target: beat yesterday, else beat your average.
+function goalHtml(){
+  const day = dayNumber(), y = store.history[day-1], st = computeStats();
+  if (y) return `Today's goal: beat yesterday's <b>${y.total}</b>.`;
+  if (st.played) return `Today's goal: beat your average of <b>${st.avg}</b>.`;
+  return "Takes about two minutes. No sign-up.";
+}
+
+function renderHome(){
+  game = null; refreshHeader();
+  const day = dayNumber(), done = store.history[day];
+  if (done) return renderResults(day, done.scores, done.total, null);
+  const st = computeStats(), ip = store.inProgress && store.inProgress.day === day ? store.inProgress : null;
+  const improving = testTrends().filter(t => t.change !== null && t.change > 0).sort((a,b)=>b.change-a.change)[0];
+  const nBadges = Object.keys(store.badges).length;
+  app.innerHTML = `<section class="card">
+    <div class="kicker">Today's edition</div>
+    <h1>How sharp are you today?</h1>
+    <p class="mt">Five tiny tests, one score out of 500. Same puzzles for everyone, new ones every midnight.</p>
+    <div class="toc">${ROUNDS.map((r,i)=>`<div><span>${pad2(i)}</span><b>${r.name}</b><i>${store.testBest[i] !== null && store.testBest[i] !== undefined ? `Best ${store.testBest[i]}` : r.blurb}</i></div>`).join("")}</div>
+    <p class="goal">${goalHtml()}</p>
+    <button class="btn primary block huge" id="start">${ip && ip.scores.length ? `Continue · ${ip.scores.length} of 5 done` : "Start today's Five"}</button>
+    <p class="mt center">${st.streak ? `You're on a <b>${st.streak}-day streak</b>. Keep it going.` : st.played ? "Your streak reset. Start a new one today." : ""}</p>
+    ${st.played || store.xp ? `<div class="panel">${levelBar()}
+      <div class="minirow"><span>Streak savers <b>${store.freezes}</b></span><span>Badges <b>${nBadges} / ${BADGES.length}</b></span></div>
+      ${improving ? `<p class="mt">You're improving at <b>${improving.name}</b>: up ${improving.change} points lately.</p>` : ""}</div>` : ""}
+    <button class="btn block mt" id="prac">Practice mode</button>
+  </section>`;
+  $("#start").onclick = startDaily;
+  $("#prac").onclick = startPractice;
+}
+
+/* ---------- stats & help ---------- */
+function openStats(){
+  const st = computeStats(), today = dayNumber();
+  const last = Array.from({length:14}, (_,i) => today - 13 + i);
+  const trends = testTrends(), sw = strongestWeakest();
+  $("#statsBody").innerHTML = `<div class="kicker">Your record</div><h2>Statistics</h2>
+    <div class="stats"><div><b>${st.played}</b><small>Played</small></div><div><b>${st.avg}</b><small>Average</small></div>
+    <div><b>${st.streak}</b><small>Streak</small></div><div><b>${st.maxStreak}</b><small>Best run</small></div></div>
+    ${levelBar()}
+    <p class="mt">Best daily score <b>${st.best}</b> · Practice best <b>${store.practiceBest}</b> · Streak savers <b>${store.freezes}</b></p>
+    <p class="mt"><b>Last 14 days</b></p>
+    <div class="hist">${last.map(d => { const h = store.history[d]; return `<div class="${d===today?"today":""}" title="No. ${d}: ${h ? h.total : "not played"}" style="height:${h ? Math.max(2, h.total/5) : 0}%"></div>`; }).join("")}</div>
+    <p class="mt"><b>Are you getting better?</b></p>
+    <div class="trend">${trends.map((t,i) => `<div><span class="n">${pad2(i)}</span><span>${t.name}</span>
+      <span class="c">${t.change === null ? `<small>${t.plays < 7 ? `${Math.max(0, 7 - t.plays)} more games` : "—"}</small>` : delta(t.change)}</span>
+      <b>${t.recentAvg ?? "–"}</b></div>`).join("")}</div>
+    <p style="font-size:12px" class="mt">Right column: your average over the last 5 games. Arrows compare it with the 5 games before.</p>
+    ${sw ? `<p class="mt">Strongest: <b>${sw.strong.name}</b> · Room to grow: <b>${sw.weak.name}</b></p>` : ""}
+    <p class="mt"><b>Badges · ${Object.keys(store.badges).length} of ${BADGES.length}</b></p>
+    <div class="badges">${BADGES.map(b => `<div class="badge ${store.badges[b.id] ? "" : "locked"}"><i class="medal">${store.badges[b.id] ? "★" : "?"}</i><div><b>${b.name}</b><small>${b.desc}</small></div></div>`).join("")}</div>
+    <p class="mt" style="font-size:12px">Stats are stored on this device only.</p>`;
+  $("#statsDlg").showModal();
+}
+
+/* ---------- confetti (paper scraps) ---------- */
+function confetti(n){
+  const c = $("#confetti"), x = c.getContext("2d"); c.width = innerWidth; c.height = innerHeight;
+  const cols = [css("--ink"), css("--accent"), css("--good"), css("--ok")];
+  const ps = Array.from({length:n}, () => ({x: innerWidth/2, y: innerHeight/3, vx:(Math.random()-.5)*13, vy: -Math.random()*13-4, r: Math.random()*7+4, c: cols[Math.floor(Math.random()*cols.length)], a: Math.random()*6}));
+  const t0 = performance.now();
+  const f = now => { x.clearRect(0,0,c.width,c.height);
+    ps.forEach(p => { p.vy += .4; p.vx *= .99; p.x += p.vx; p.y += p.vy; p.a += .15; x.save(); x.translate(p.x,p.y); x.rotate(p.a); x.fillStyle = p.c; x.fillRect(-p.r/2,-p.r/5,p.r,p.r/2.5); x.restore(); });
+    if (now - t0 < 2600) requestAnimationFrame(f); else x.clearRect(0,0,c.width,c.height); };
+  requestAnimationFrame(f);
+}
+
+/* ---------- boot ---------- */
+$("#adTop").innerHTML = adUnit("top");
+$("#adBottom").innerHTML = adUnit("bottom");
+loadAdsScript(); fillAds();
+$("#helpBtn").onclick = () => $("#helpDlg").showModal();
+$("#statsBtn").onclick = openStats;
+$("#streakChip").onclick = openStats;
+$("#logo").onclick = () => { if (!game) renderHome(); };
+const recovered = finalizeLeftoverRun();
+const saved = applyStreakSavers();
+if (!recovered) renderHome();
+// If the app sits open past midnight, show the new edition when the player comes back.
+document.addEventListener("visibilitychange", () => {
+  if (!document.hidden && !game && $("#issueTxt").textContent !== String(dayNumber())){ applyStreakSavers(); renderHome(); }
+});
+if (saved) setTimeout(() => toast(`A streak saver covered ${saved === 1 ? "yesterday" : saved + " missed days"}. Your streak is safe.`), 600);
+if (!Object.keys(store.history).length && !store.inProgress) setTimeout(() => $("#helpDlg").showModal(), 400);
+if ("serviceWorker" in navigator && location.protocol.startsWith("http")) navigator.serviceWorker.register("sw.js").catch(()=>{});
+</script>
+</body>
+</html>
